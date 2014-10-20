@@ -1,11 +1,14 @@
-Bitfinex PHP bot that automatically lends your money based on the market prices.
+Bitfinex Auto Lend
+==================
+
+Bitfinex Auto Lend is bitfinex PHP bot that automatically lends your money based on the market prices.
 
 ## Options ##
 
 To change options please edit config.php
 
 | Option        | Default           | Description  |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:| -----|
 | api_key | - | Your API key generated at https://www.bitfinex.com/account/api |
 | api_secret | - | Your API secret generated at https://www.bitfinex.com/account/api |
 | currency      | USD | Currency of the money to lend |
