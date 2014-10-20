@@ -35,7 +35,7 @@ if( $available_balance >= $config['minimum_balance'] )
 		
 		$total_amount += floatval($item['amount']);
 	
-		// Possible the closest rate to what we want to lend
+		// Possibly the closest rate to what we want to lend
 		if( $total_amount <= $config['max_total_swaps'] )
 		{
 			$rate = $item['rate'];
