@@ -13,6 +13,7 @@ To change options please edit config.php
 | api_secret | - | Your API secret generated at https://www.bitfinex.com/account/api |
 | currency      | USD | Currency of the money to lend |
 | period      | 2      |   Number of days to lend money |
+| remove_after | 50 | Number of minutes after unexecuted offer will get cancelled |
 | minimum_balance | 50      |    Minimum balance in order to start lending (bitfinex constant) |
 | max_total_swaps | 20000 | Max number of total swaps to check for a closest rate * |
 
