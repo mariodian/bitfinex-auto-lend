@@ -1,10 +1,28 @@
 <?php
 
 include_once('./config.php'); 
-include_once('./functions.php');
-include_once('./bitfinex.php');
+include_once('../functions.php');
+include_once('../bitfinex.php');
 
 $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
+
+$current_offers = $bfx->get_offers();
+
+// Remove offers that weren't executed for too long
+foreach( $current_offers as $item )
+{
+	$id = $item['id'];
+	$timestamp = (int) $item['timestamp'];
+	$current_timestamp = time();
+	$diff_minutes = round(($current_timestamp - $timestamp) / 60);
+	
+	if( $config['remove_after'] <= $diff_minutes )
+	{
+		message("Removing offer # $id");
+
+		$bfx->cancel_offer($id);
+	}
+}
 
 $balances = $bfx->get_balances();
 $available_balance = floatval($balances[3]['available']);
@@ -35,7 +53,7 @@ if( $available_balance >= $config['minimum_balance'] )
 		
 		$total_amount += floatval($item['amount']);
 	
-		// Possibly the closest rate to what we want to lend
+		// Possible the closest rate to what we want to lend
 		if( $total_amount <= $config['max_total_swaps'] )
 		{
 			$rate = $item['rate'];

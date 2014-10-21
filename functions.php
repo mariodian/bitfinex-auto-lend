@@ -9,7 +9,7 @@ function array_debug($array)
 
 function message($message)
 {
-	echo 'MESSAGE: ' . $message;
+	echo "MESSAGE: $message<br />";
 }
 
 function daily_rate($rate)

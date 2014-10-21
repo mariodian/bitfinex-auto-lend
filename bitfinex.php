@@ -26,10 +26,6 @@ class Bitfinex {
 			'direction' => $direction
 		);
 		
-		array_debug($data);
-		
-//		exit;
-		
 		return $this->send_signed_request($data);
 	
 	}
