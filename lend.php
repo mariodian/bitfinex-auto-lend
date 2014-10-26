@@ -1,8 +1,8 @@
 <?php
 
 include_once('./config.php'); 
-include_once('../functions.php');
-include_once('../bitfinex.php');
+include_once('./functions.php');
+include_once('./bitfinex.php');
 
 $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
 
