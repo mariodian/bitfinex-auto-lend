@@ -18,14 +18,14 @@ class Bitfinex {
 		$request = '/' . $this->api_version . '/offer/new';
 		
 		$data = array(
-			'request' => $request,
-			'currency' => $currency,
-			'amount' => $amount,
-			'rate' => $rate,
-			'period' => $period,
+			'request' 	=> $request,
+			'currency' 	=> $currency,
+			'amount' 	=> $amount,
+			'rate' 		=> $rate,
+			'period' 	=> $period,
 			'direction' => $direction
 		);
-		
+
 		return $this->send_signed_request($data);
 	
 	}
@@ -35,8 +35,8 @@ class Bitfinex {
 		$request = '/' . $this->api_version . '/offer/cancel';
 		
 		$data = array(
-			'request' => $request,
-			'offer_id' => $offer_id
+			'request' 	=> $request,
+			'offer_id' 	=> $offer_id
 		);
 		
 		return $this->send_signed_request($data);
@@ -47,8 +47,8 @@ class Bitfinex {
 		$request = '/' . $this->api_version . '/offer/status';
 		
 		$data = array(
-			'request' => $request,
-			'offer_id' => $offer_id
+			'request' 	=> $request,
+			'offer_id' 	=> $offer_id
 		);
 		
 		return $this->send_signed_request($data);
@@ -99,6 +99,20 @@ class Bitfinex {
 			'options' => array()
 		);
 		
+		return $this->send_signed_request($data);
+	}
+	
+	public function get_history($currency, $limit = 1, $wallet = 'trading')
+	{
+		$request = '/' . $this->api_version . '/history';
+		
+		$data = array(
+			'request' => $request,
+			'currency' 	=> $currency,
+			'limit' => $limit,
+			'wallet' => $wallet
+		);
+			
 		return $this->send_signed_request($data);
 	}
 	
