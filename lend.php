@@ -1,8 +1,10 @@
 <?php
 
-include_once('./config.php'); 
-include_once('./functions.php');
-include_once('./bitfinex.php');
+$currency = @$_GET['currency'] ? htmlspecialchars($_GET['currency']) : 'usd';
+
+include_once("./config-$currency.php"); 
+include_once('../functions.php');
+include_once('../bitfinex.php');
 
 $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
 
@@ -25,7 +27,20 @@ foreach( $current_offers as $item )
 }
 
 $balances = $bfx->get_balances();
-$available_balance = floatval($balances[3]['available']);
+$available_balance = 0;
+
+if( $balances )
+{
+	foreach( $balances as $item )
+	{
+		if( $item['type'] == 'deposit' && $item['currency'] == strtolower($config['currency']) )
+		{
+			$available_balance = floatval($item['available']);
+			
+			break;
+		}
+	}
+}
 
 // Is there enough balance to lend?
 if( $available_balance >= $config['minimum_balance'] )
@@ -35,10 +50,10 @@ if( $available_balance >= $config['minimum_balance'] )
 	$lendbook = $bfx->get_lendbook($config['currency']);
 	$offers = $lendbook['asks'];
 	
-	$total_amount = 0;
-	$next_rate = 0;
-	$next_amount = 0;
-	$check_next = FALSE;
+	$total_amount 	= 0;
+	$next_rate 		= 0;
+	$next_amount 	= 0;
+	$check_next 	= FALSE;
 	
 	// Find the right rate
 	foreach( $offers as $item )
@@ -46,9 +61,9 @@ if( $available_balance >= $config['minimum_balance'] )
 		// Save next closest item
 		if( $check_next )
 		{
-			$next_rate = $item['rate'];	
-			$next_amount = $item['amount'];
-			$check_next = FALSE;
+			$next_rate 		= $item['rate'];	
+			$next_amount 	= $item['amount'];
+			$check_next 	= FALSE;
 		}
 		
 		$total_amount += floatval($item['amount']);
