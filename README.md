@@ -5,7 +5,7 @@ Bitfinex Auto Lend is bitfinex PHP bot that automatically lends your money based
 
 ## Options ##
 
-To change options please edit config-<currency>.php
+To change options please edit config-{currency}.php
 
 Available currencies to lend: USD, BTC, LTC.
 
