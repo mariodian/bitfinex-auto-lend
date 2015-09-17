@@ -42,3 +42,9 @@ Save the file when you're done and make sure you can see your job in crontab:
 | 0 0 \* \* \* /path/to/script/lend.php?currency=ltc      | Run every day at 12AM |
 | 20 13 \* \* 6 /path/to/script/lend.php      | Run every saturday at 1:20PM  |
 | 0 8 \* \* 1,2,3,4,5 /path/to/script/lend.php |  Run every work day at 8AM |
+
+### Donations ###
+
+Feel free to donate some bitcoins if my work is helpful to you: [1x1UnfVJu7cprs3E2jjQ9WRcdDi5KJxAU](http://btc.blockr.io/address/info/1x1UnfVJu7cprs3E2jjQ9WRcdDi5KJxAU)
+
+Thank you!
