@@ -3,10 +3,12 @@
 $currency = @$_GET['currency'] ? htmlspecialchars($_GET['currency']) : 'usd';
 
 include_once("./config-$currency.php"); 
-include_once('../functions.php');
-include_once('../bitfinex.php');
+include_once('./functions.php');
+include_once('./bitfinex.php');
 
 $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
+
+print_r($bfx);
 
 $current_offers = $bfx->get_offers();
 
