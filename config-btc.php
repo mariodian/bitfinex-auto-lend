@@ -1,9 +1,6 @@
 <?php 
 
-$config = array();
-
-$config['api_key'] = '<your api key>';
-$config['api_secret'] = '<your secret key>';
+include_once('./config.php');
 
 $config['currency'] = 'BTC'; // Currency to lend
 $config['period'] = 2; // Number of days to lend

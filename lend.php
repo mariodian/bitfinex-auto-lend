@@ -8,8 +8,6 @@ include_once('./bitfinex.php');
 
 $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
 
-print_r($bfx);
-
 $current_offers = $bfx->get_offers();
 
 // Remove offers that weren't executed for too long
