@@ -10,6 +10,12 @@ $bfx = new Bitfinex($config['api_key'], $config['api_secret']);
 
 $current_offers = $bfx->get_offers();
 
+// Something is wrong most likely API key
+if( array_key_exists('message', $current_offers) )
+{
+	die($current_offers['message']);
+}
+
 // Remove offers that weren't executed for too long
 foreach( $current_offers as $item )
 {
