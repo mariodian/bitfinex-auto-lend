@@ -45,6 +45,6 @@ Save the file when you're done and make sure you can see your job in crontab:
 
 ### Donations ###
 
-Feel free to donate some bitcoins if my work is helpful to you: [1x1UnfVJu7cprs3E2jjQ9WRcdDi5KJxAU](http://btc.blockr.io/address/info/1x1UnfVJu7cprs3E2jjQ9WRcdDi5KJxAU)
+Feel free to donate some bitcoins if my work is helpful to you: [1DBKaSLXpzGEXSWk1wJLRSAU7qAHhCYXvk](http://btc.blockr.io/address/info/1DBKaSLXpzGEXSWk1wJLRSAU7qAHhCYXvk)
 
 Thank you!
