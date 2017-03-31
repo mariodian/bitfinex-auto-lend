@@ -1,6 +1,6 @@
 <?php
 
-include_once("./config.php"); 
+include_once("./config.php");
 include_once('./functions.php');
 include_once('./bitfinex.php');
 
@@ -17,12 +17,9 @@ $limit = @$_GET['limit'] ? (int) htmlspecialchars($_GET['limit']) : 10;
 $currency_symbol = $currency == 'usd' ? '$' : '&#x0E3F;';
 
 
-if( $currency && $wallet )
-{
-	foreach( $balances as $item )
-	{
-		if( $item['type'] == strtolower($wallet) && $item['currency'] == strtolower($currency) )
-		{
+if ($currency && $wallet) {
+	foreach ($balances as $item) {
+		if ($item['type'] == strtolower($wallet) && $item['currency'] == strtolower($currency)) {
 			$available_balance = floatval($item['available']);
 
 			break;
@@ -33,42 +30,33 @@ if( $currency && $wallet )
 
 	$history = $bfx->get_history($currency, $limit, $wallet);
 
-	foreach( $history as $item )
-	{
+	foreach ($history as $item) {
 		$amount = round($item['amount'], 4);
 		$description = str_replace('Earned fees from user', "Earned $currency_symbol$amount from user", $item['description']);
 
 		message("$description on " . date('d.m.Y @ H:i:s', $item['timestamp']));
 	}
-}
-else
-{
+} else {
 	$total = array();
 
-	if( $currency )
-	{
+	if ($currency) {
 		$temp = array();
 
-		foreach( $balances as $item )
-		{
-			if( $currency == $item['currency'] )
-			{
+		foreach ($balances as $item) {
+			if ($currency == $item['currency']) {
 				$temp[] = $item;
 				@$total["$currency"] += $item['amount'];
 			}
 		}
 
 		$balances = $temp;
-	}
-	else
-	{
-		foreach( $balances as $item )
-		{
+	} else {
+		foreach ($balances as $item) {
 			@$total[$item['currency']] += $item['amount'];
 		}
 	}
 
-$last_acc = '';
+	$last_acc = '';
 
 ?>
 
@@ -87,8 +75,7 @@ $last_acc = '';
 
 	$type = $val['type'];
 
-	if( $last_acc != $type )
-	{
+	if ($last_acc != $type) {
 		echo '<tr>';
 		echo '<td>' . ucfirst($type) . '</td>';
 
@@ -100,8 +87,7 @@ $last_acc = '';
 				<?= $val['currency'] != 'usd' ? $val['amount'] : round($val['amount'], 2) ?>
 			</td>
 	<?php
-		if( $last_acc != $type )
-		{
+		if ($last_acc != $type) {
 			echo '</tr>';
 		}
 	?>
