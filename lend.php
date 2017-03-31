@@ -77,14 +77,12 @@ if ($available_balance >= $config['minimum_balance']) {
 		$rate = $next_rate - 0.01;
 	}
 
-	$daily_rate = daily_rate($rate);
-	$available_balance = number_format($available_balance, 2, '.', '');
-	$rate = number_format($rate, 2, '.', '');
-
 	$result = $bfx->new_offer($config['currency'], $available_balance, $rate, $config['period'], 'lend');
 
 	// Successfully lent
 	if (array_key_exists('id', $result)) {
+		$daily_rate = daily_rate($rate);
+		
 		message("$available_balance {$config['currency']} lent for {$config['period']} days at daily rate of $daily_rate%. Offer id {$result['id']}.");
 	} else {
 		// Something went wrong

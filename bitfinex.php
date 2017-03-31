@@ -268,16 +268,16 @@ class Bitfinex {
   	$request = $this->endpoint('order', 'new');
 
   	$data = array(
-      'request'       => $request,
-      'symbol'        => $symbol,
-      'amount'        => $amount,
-      'price'         => $price,
-      'exchange'      => $exchange,
-      'side'          => $side,
-      'type'          => $type,
-      'is_hidden'     => $is_hidden,
-      'is_postonly'   => $is_postonly,
-      'ocoorder'      => $ocoorder
+      'request'     => $request,
+      'symbol'      => $symbol,
+      'amount'      => $this->num_to_string($amount),
+      'price'       => $price,
+      'exchange'    => $exchange,
+      'side'        => $side,
+      'type'        => $type,
+      'is_hidden'   => $is_hidden,
+      'is_postonly' => $is_postonly,
+      'ocoorder'    => $ocoorder
   	);
 
     if ($ocoorder) {
@@ -308,7 +308,7 @@ class Bitfinex {
   	$data = array(
       'request'   => $request,
       'symbol'    => $symbol,
-      'amount'    => $amount,
+      'amount'    => $this->num_to_string($amount),
       'price'     => $price,
       'exchange'  => $exchange,
       'side'      => $side,
@@ -409,7 +409,7 @@ class Bitfinex {
       'request'       => $request,
       'order_id'      => $order_id,
       'symbol'        => $symbol,
-      'amount'        => $amount,
+      'amount'        => $this->num_to_string($amount),
       'price'         => $price,
       'exchange'      => $exchange,
       'side'          => $side,
@@ -500,9 +500,9 @@ class Bitfinex {
   	$request = $this->endpoint('position', 'claim');
 
   	$data = array(
-      'request'       => $request,
-      'position_id'   => $position_id,
-      'amount'        => $amount
+      'request'     => $request,
+      'position_id' => $position_id,
+      'amount'      => $this->num_to_string($amount),
   	);
 
   	return $this->send_auth_request($data);
@@ -641,8 +641,8 @@ class Bitfinex {
   	$data = array(
       'request'   => $request,
       'currency'  => $currency,
-      'amount'    => $amount,
-      'rate'      => $rate,
+      'amount'    => $this->num_to_string($amount),
+      'rate'      => $this->num_to_string($rate),
       'period'    => $period,
       'direction' => $direction
   	);
@@ -845,11 +845,11 @@ class Bitfinex {
   	$request = $this->endpoint('transfer');
 
   	$data = array(
-      'request'       => $request,
-      'currency'      => $currency,
-      'amount'        => $amount,
-      'walletfrom'    => $walletfrom,
-      'walletto'      => $walletto
+      'request'     => $request,
+      'currency'    => $currency,
+      'amount'      => $this->num_to_string($amount),
+      'walletfrom'  => $walletfrom,
+      'walletto'    => $walletto
   	);
 
   	return $this->send_auth_request($data);
@@ -888,10 +888,10 @@ class Bitfinex {
   	$request = $this->endpoint('withdraw');
 
   	$data = array(
-      'request'           => $request,
-      'withdraw_type'     => $withdraw_type,
-      'walletselected'    => $walletselected,
-      'amount'            => $amount
+      'request'         => $request,
+      'withdraw_type'   => $withdraw_type,
+      'walletselected'  => $walletselected,
+      'amount'          => $this->num_to_string($amount),
   	);
 
   	switch ($withdraw_type) {
@@ -1108,6 +1108,10 @@ class Bitfinex {
   	} else {
       return $this->output($result, $this->is_bitfinex_error($ch));
   	}
+  }
+
+  function num_to_string($num) {
+  	return number_format($num, 2, '.', '');
   }
 }
 
