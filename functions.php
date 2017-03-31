@@ -1,19 +1,16 @@
 <?php
 
-function array_debug($array)
-{
+function debug() {
 	echo '<pre>';
-	print_r($array);
+	print_r(func_get_args());
 	echo '</pre>';
 }
 
-function message($message)
-{
+function message($message) {
 	echo "MESSAGE: $message<br />";
 }
 
-function daily_rate($rate)
-{
+function daily_rate($rate) {
 	return round($rate/365, 4);
 }
 
