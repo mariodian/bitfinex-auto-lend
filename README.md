@@ -3,6 +3,10 @@ Bitfinex Auto Lend
 
 Bitfinex Auto Lend is bitfinex PHP bot that automatically lends your money based on the market prices.
 
+Create a [Bitfinex account](https://www.bitfinex.com/?refcode=P1odZd0Bkc) if you haven't done so yet. 
+
+P.S. It's a referral link. If you sign up with it you'll get 10% off of trading and lending fees.
+
 ## Options ##
 
 To change options please edit config-{currency}.php
