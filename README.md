@@ -7,7 +7,7 @@ Bitfinex Auto Lend is bitfinex PHP bot that automatically lends your money based
 
 To change options please edit config-{currency}.php
 
-Available currencies to lend: USD, BTC, LTC.
+Available currencies to lend: USD, BTC, ETH, ETC, BFX, ZEC, XMR, LTC, DASH.
 
 | Option        | Default           | Description  |
 | ------------- |:-------------:| -----|
@@ -20,6 +20,7 @@ Available currencies to lend: USD, BTC, LTC.
 | max_total_swaps | 20000 | Max number of total swaps to check for a closest rate * |
 
 \* If there are e.g. total of 12000 swaps at 1%/day and 22000 swaps at 1.001%/day the script chooses the lower rate, because we don't want to go beyond the rate of 20000 swaps.
+\* If the currency isn't lent within an hour you may want to lower this value
 
 ## How to run ##
 
