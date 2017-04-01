@@ -55,11 +55,13 @@ if ($available_balance >= $minimum_balance) {
 
 	$lendbook = $bfx->get_lendbook($config['currency']);
 	$offers = $lendbook['asks'];
+	$bids = $lendbook['bids'];
 
 	$total_amount 	= 0;
 	$next_rate 		= 0;
 	$next_amount 	= 0;
 	$check_next 	= FALSE;
+	$lowest_rate 	= count($bids) ? $bids[0]['rate'] : 0;
 
 	// Find the right rate
 	foreach ($offers as $item) {
@@ -72,8 +74,8 @@ if ($available_balance >= $minimum_balance) {
 
 		$total_amount += floatval($item['amount']);
 
-		// Possible the closest rate to what we want to lend
-		if ($total_amount <= $config['max_total_swaps']) {
+		// Possible closest rate to what we want to lend (never go lower than the highest bid rate)
+		if ($next_rate < $lowest_rate || $total_amount <= $config['max_total_swaps']) {
 			$rate = $item['rate'];
 			$check_next = TRUE;
 		}
