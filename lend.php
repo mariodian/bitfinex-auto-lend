@@ -42,8 +42,15 @@ if ($balances) {
 	}
 }
 
+if ($currency !== 'usd') {
+	$ticker = $bfx->get_ticker("{$currency}usd");
+	$minimum_balance = $ticker['last_price'] * $available_balance;
+} else {
+	$minimum_balance = $config['minimum_balance'];
+}
+
 // Is there enough balance to lend?
-if ($available_balance >= $config['minimum_balance']) {
+if ($available_balance >= $minimum_balance) {
 	message("Lending availabe balance of $available_balance");
 
 	$lendbook = $bfx->get_lendbook($config['currency']);
@@ -82,7 +89,7 @@ if ($available_balance >= $config['minimum_balance']) {
 	// Successfully lent
 	if (array_key_exists('id', $result)) {
 		$daily_rate = daily_rate($rate);
-		
+
 		message("$available_balance {$config['currency']} lent for {$config['period']} days at daily rate of $daily_rate%. Offer id {$result['id']}.");
 	} else {
 		// Something went wrong
