@@ -10,3 +10,4 @@ $config['max_total_swaps'] = 300; // Max number of total swaps to check for a cl
 // * If there are e.g. total of 40 swaps at 1%/day and 60
 // swaps at 1.001%/day the script chooses the lower rate, because
 // we don't want to go beyond the rate of $config['max_total_swaps'] swaps.
+// If the currency doesn't get lent within an hour you may want to lower this value
