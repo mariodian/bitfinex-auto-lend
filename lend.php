@@ -44,7 +44,7 @@ if ($balances) {
 
 if ($currency !== 'usd') {
 	$ticker = $bfx->get_ticker("{$currency}usd");
-	$minimum_balance = $ticker['last_price'] * $available_balance;
+	$minimum_balance = ceil(($config['minimum_balance'] / $ticker['last_price']) * 100000) / 100000; // Better precision
 } else {
 	$minimum_balance = $config['minimum_balance'];
 }
@@ -99,7 +99,7 @@ if ($available_balance >= $minimum_balance) {
 	}
 }
 else {
-	message("Balance of $available_balance {$config['currency']} is not enough to lend.");
+	message("Balance of $available_balance {$config['currency']} is not enough to lend. At least $minimum_balance {$config['currency']} is needed.");
 }
 
 ?>
