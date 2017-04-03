@@ -59,13 +59,24 @@ if ($currency && $wallet) {
 	$last_acc = '';
 
 ?>
+<style>
+body {
+	font-family: Arial;
+}
 
-<table border="0" cellpadding="4" cellpadding="4">
+hr {
+	border: 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="10">
 	<thead>
 		<tr>
-			<th>Account</th>
+			<th align="left">Account</th>
 		<?php foreach($total as $key => $val) { ?>
-			<th><?= strtoupper($key) ?></th>
+			<th align="right"><?= strtoupper($key) ?></th>
 		<?php } ?>
 		</tr>
 	</thead>
@@ -94,6 +105,11 @@ if ($currency && $wallet) {
 <?php } ?>
 	</tbody>
 	<tfoot>
+		<tr>
+			<td colspan="<?= count($total) + 1?>">
+				<hr>
+			</td>
+		</tr>
 		<tr>
 			<td><b>TOTAL</b></td>
 		<?php foreach($total as $key => $val) { ?>
